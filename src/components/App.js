@@ -1,11 +1,16 @@
 import React from "react";
 import Header from "./Header";
+import SideBar from "./SideBar";
+import RecomendVideo from "./RecomendVideo";
 
 function App() {
   return (
     <div className="app">
       <Header />
-      <header className="App-header">Youtube Clone</header>
+      <div className="home-page">
+        <SideBar />
+        <RecomendVideo />
+      </div>
     </div>
   );
 }

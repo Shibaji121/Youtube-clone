@@ -13,7 +13,7 @@ function Header() {
   return (
     <div className="header">
       <div className="header_left">
-        <Menu />
+        <Menu className="header-menu-btn" />
         <img
           className="header_logo"
           src="https://upload.wikimedia.org/wikipedia/commons/3/34/YouTube_logo_%282017%29.png"

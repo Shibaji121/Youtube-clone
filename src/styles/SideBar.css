@@ -1,0 +1,21 @@
+.side-bar {
+  flex: 0.25;
+}
+
+.sidebar-row {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  margin-left: 8px;
+}
+
+.sidebar-row:hover {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sideBar-title {
+  margin-left: 1rem;
+  font-weight: 500;
+}
