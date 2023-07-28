@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/SideBar.css";
 import SideBarRow from "./SideBarRow";
 import {
@@ -15,19 +15,75 @@ import {
 } from "@mui/icons-material";
 
 function SideBar() {
+  const [selectedItem, setSelectedItem] = useState("Home");
+
+  const handleItemClick = (title) => {
+    setSelectedItem(title);
+  };
+
   return (
     <div className="side-bar">
-      <SideBarRow Icon={HomeOutlined} title={"Home"} selected={true} />
-      <SideBarRow Icon={WhatshotOutlined} title={"Trending"} />
-      <SideBarRow Icon={SubscriptionsOutlined} title={"Subscriptions"} />
+      <SideBarRow
+        Icon={HomeOutlined}
+        title={"Home"}
+        selected={selectedItem === "Home"}
+        onItemClick={handleItemClick}
+      />
+      <SideBarRow
+        Icon={WhatshotOutlined}
+        title={"Trending"}
+        selected={selectedItem === "Trending"}
+        onItemClick={handleItemClick}
+      />
+      <SideBarRow
+        Icon={SubscriptionsOutlined}
+        title={"Subscriptions"}
+        selected={selectedItem === "Subscriptions"}
+        onItemClick={handleItemClick}
+      />
       <hr />
-      <SideBarRow Icon={VideoLibraryOutlined} title={"Library"} />
-      <SideBarRow Icon={HistoryOutlined} title={"History"} />
-      <SideBarRow Icon={SmartDisplayOutlined} title={"Your videos"} />
-      <SideBarRow Icon={WatchLaterOutlined} title={"Watch later"} />
-      <SideBarRow Icon={VerticalAlignBottomOutlined} title={"Downloads"} />
-      <SideBarRow Icon={ContentCutOutlined} title={"Your clips"} />
-      <SideBarRow Icon={KeyboardArrowDownOutlined} title={"Show more"} />
+      <SideBarRow
+        Icon={VideoLibraryOutlined}
+        title={"Library"}
+        selected={selectedItem === "Library"}
+        onItemClick={handleItemClick}
+      />
+      <SideBarRow
+        Icon={HistoryOutlined}
+        title={"History"}
+        selected={selectedItem === "History"}
+        onItemClick={handleItemClick}
+      />
+      <SideBarRow
+        Icon={SmartDisplayOutlined}
+        title={"Your videos"}
+        selected={selectedItem === "Your videos"}
+        onItemClick={handleItemClick}
+      />
+      <SideBarRow
+        Icon={WatchLaterOutlined}
+        title={"Watch later"}
+        selected={selectedItem === "Watch later"}
+        onItemClick={handleItemClick}
+      />
+      <SideBarRow
+        Icon={VerticalAlignBottomOutlined}
+        title={"Downloads"}
+        selected={selectedItem === "Downloads"}
+        onItemClick={handleItemClick}
+      />
+      <SideBarRow
+        Icon={ContentCutOutlined}
+        title={"Your clips"}
+        selected={selectedItem === "Your clips"}
+        onItemClick={handleItemClick}
+      />
+      <SideBarRow
+        Icon={KeyboardArrowDownOutlined}
+        title={"Show more"}
+        selected={selectedItem === "Show more"}
+        onItemClick={handleItemClick}
+      />
     </div>
   );
 }
