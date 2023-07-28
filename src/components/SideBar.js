@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import "../styles/SideBar.css";
 import SideBarRow from "./SideBarRow";
 import {
@@ -17,9 +17,9 @@ import {
 function SideBar() {
   const [selectedItem, setSelectedItem] = useState("Home");
 
-  const handleItemClick = (title) => {
+  const handleItemClick = useCallback((title) => {
     setSelectedItem(title);
-  };
+  }, []);
 
   return (
     <div className="side-bar">

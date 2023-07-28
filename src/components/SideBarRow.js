@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 function SideBarRow({ Icon, title, selected, onItemClick }) {
-  const handleItemClick = () => {
+  const handleItemClick = useCallback(() => {
     onItemClick(title);
-  };
+  }, [onItemClick, title]);
 
   return (
     <div
@@ -16,4 +16,4 @@ function SideBarRow({ Icon, title, selected, onItemClick }) {
   );
 }
 
-export default SideBarRow;
+export default React.memo(SideBarRow);
