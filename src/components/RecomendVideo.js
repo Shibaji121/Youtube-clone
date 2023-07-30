@@ -3,7 +3,9 @@ import React from "react";
 function RecomendVideo() {
   return (
     <div className="recomend-video">
-      <h1>Here goes the Recommended Video Section</h1>
+      <div id="scroll-container">
+        <h2>Here goes the scrollable container</h2>
+      </div>
     </div>
   );
 }

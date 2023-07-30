@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 import RecomendVideo from "./RecomendVideo";
+import Chips from "./Chips";
 
 function App() {
   return (
@@ -9,7 +10,10 @@ function App() {
       <Header />
       <div className="home-page">
         <SideBar />
-        <RecomendVideo />
+        <div className="video-section">
+          <Chips />
+          <RecomendVideo />
+        </div>
       </div>
     </div>
   );
