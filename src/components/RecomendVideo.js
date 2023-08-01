@@ -1,11 +1,16 @@
 import React from "react";
+import "../styles/recomendVideo.css";
+import VideoCard from "./VideoCard";
 
 function RecomendVideo() {
   return (
     <div className="recomend-video">
-      <div id="scroll-container">
-        <h2>Here goes the scrollable container</h2>
-      </div>
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
+      <VideoCard />
     </div>
   );
 }
