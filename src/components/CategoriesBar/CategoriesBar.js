@@ -1,11 +1,11 @@
 import React from "react";
 
-function Chips() {
+const CategoriesBar = () => {
   return (
-    <div id="chips-wrapper">
+    <div>
       <h3>Chips are coming Soon WIP</h3>
     </div>
   );
-}
+};
 
-export default Chips;
+export default CategoriesBar;

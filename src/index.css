@@ -17,6 +17,7 @@ code {
 
 .home-page {
   display: flex;
+  height: 90vh;
 }
 
 .video-section {

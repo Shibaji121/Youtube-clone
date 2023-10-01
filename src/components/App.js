@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "../components/Header/Header";
 import SideBar from "../components/SideBar/SideBar";
-import RecomendVideo from "../components/Video/RecomendVideo";
-import Chips from "../components/CategoriesBar/Chips";
+import { Container } from "react-bootstrap";
+import HomeScreen from "./HomeScreen/HomeScreen";
 
 function App() {
   return (
@@ -10,10 +10,9 @@ function App() {
       <Header />
       <div className="home-page">
         <SideBar />
-        <div className="video-section">
-          <Chips />
-          <RecomendVideo />
-        </div>
+        <Container fluid className="app_main">
+          <HomeScreen />
+        </Container>
       </div>
     </div>
   );
