@@ -31,13 +31,14 @@
   align-items: center;
   width: 40%;
   justify-content: space-between;
+  gap: 8px;
 }
 
 .header_input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
 }
 
 .header_input > input {
