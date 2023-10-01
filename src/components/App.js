@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "./Header";
-import SideBar from "./SideBar";
-import RecomendVideo from "./RecomendVideo";
-import Chips from "./Chips";
+import Header from "../components/Header/Header";
+import SideBar from "../components/SideBar/SideBar";
+import RecomendVideo from "../components/Video/RecomendVideo";
+import Chips from "../components/CategoriesBar/Chips";
 
 function App() {
   return (

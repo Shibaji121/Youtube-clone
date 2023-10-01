@@ -1,6 +1,6 @@
 import { MoreVertRounded } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
-import "../styles/videoCard.css";
+import "../Video/videoCard.css";
 import React from "react";
 
 function VideoCard({

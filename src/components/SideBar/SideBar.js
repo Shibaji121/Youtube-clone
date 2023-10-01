@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import "../styles/SideBar.css";
+import "../SideBar/SideBar.css";
 import SideBarRow from "./SideBarRow";
 import {
   ContentCutOutlined,

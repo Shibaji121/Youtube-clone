@@ -7,7 +7,7 @@ import {
 } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import React from "react";
-import "../styles/Header.css";
+import "../Header/Header.css";
 
 function Header() {
   return (

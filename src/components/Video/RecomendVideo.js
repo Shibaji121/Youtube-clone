@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/recomendVideo.css";
-import VideoCard from "./VideoCard";
+import "../Video/recomendVideo.css";
+import VideoCard from "../Video/VideoCard";
 
 function RecomendVideo() {
   return (
