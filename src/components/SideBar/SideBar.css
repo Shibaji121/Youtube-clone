@@ -3,10 +3,6 @@
   height: 100vh;
 }
 
-.no-sideBar {
-  display: none;
-}
-
 .sidebar-row {
   display: flex;
   align-items: center;
@@ -45,6 +41,11 @@ hr {
 @media (max-width: 768px) {
   .side-bar {
     min-width: 70px;
+    position: fixed;
+    z-index: 999;
+    background-color: white;
+    transform: translateX(0);
+    transition: transform 0.2s ease-in;
   }
   .sidebar-row {
     padding: 0.5rem;
@@ -54,5 +55,8 @@ hr {
   .sideBar-title {
     margin: 0;
     font-size: 0.6rem;
+  }
+  .no-sideBar {
+    transform: translateX(-100%);
   }
 }

@@ -14,7 +14,7 @@ import {
   WhatshotOutlined,
 } from "@mui/icons-material";
 
-function SideBar({ sideBar }) {
+function SideBar({ sideBar, handleToggleSideBar }) {
   const [selectedItem, setSelectedItem] = useState("Home");
 
   const handleItemClick = useCallback((title) => {
@@ -22,7 +22,10 @@ function SideBar({ sideBar }) {
   }, []);
 
   return (
-    <div className={sideBar ? "side-bar" : "side-bar no-sideBar"}>
+    <div
+      className={sideBar ? "side-bar" : "side-bar no-sideBar"}
+      onClick={() => handleToggleSideBar(false)}
+    >
       <SideBarRow
         Icon={HomeOutlined}
         title={"Home"}
