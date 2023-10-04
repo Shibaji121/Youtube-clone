@@ -3,6 +3,10 @@
   height: 100vh;
 }
 
+.no-sideBar {
+  display: none;
+}
+
 .sidebar-row {
   display: flex;
   align-items: center;

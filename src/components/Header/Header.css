@@ -12,7 +12,13 @@
 .header_left {
   display: flex;
   align-items: center;
-  padding-left: 8px;
+  padding-left: 4px;
+}
+
+.header-menu-btn {
+  padding: 4px;
+  font-size: 2rem !important;
+  border-radius: 50%;
 }
 
 .header-menu-btn:hover {
