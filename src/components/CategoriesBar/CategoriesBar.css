@@ -1,0 +1,25 @@
+.cata-bar {
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.cata-bar::-webkit-scrollbar {
+  width: 0px;
+}
+
+span {
+  margin-right: 1rem;
+  padding: 0.4rem 0.8rem;
+  white-space: nowrap;
+  background-color: #f2f2f2;
+  color: black;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.active {
+  background-color: black;
+  color: white;
+}
