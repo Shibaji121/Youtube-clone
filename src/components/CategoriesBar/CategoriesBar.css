@@ -3,13 +3,14 @@
   font-size: 0.8rem;
   display: flex;
   overflow-x: scroll;
+  max-width: 82vw;
 }
 
 .cata-bar::-webkit-scrollbar {
   width: 0px;
 }
 
-span {
+.cata-bar span {
   margin-right: 1rem;
   padding: 0.4rem 0.8rem;
   white-space: nowrap;
