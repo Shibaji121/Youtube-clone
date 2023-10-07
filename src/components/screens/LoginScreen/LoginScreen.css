@@ -1,8 +1,6 @@
 .login {
-  height: 100vh;
   display: grid;
   place-items: center;
-  background-color: rgb(190 190 190);
 }
 .login img {
   width: 130px;

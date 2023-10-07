@@ -1,6 +1,6 @@
 .side-bar {
   min-width: 200px;
-  height: 100vh;
+  height: 91vh;
 }
 
 .sidebar-row {
@@ -46,6 +46,7 @@ hr {
     background-color: white;
     transform: translateX(0);
     transition: transform 0.2s ease-in;
+    height: 100vh;
   }
   .sidebar-row {
     padding: 0.5rem;

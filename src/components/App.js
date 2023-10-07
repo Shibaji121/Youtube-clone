@@ -4,6 +4,25 @@ import SideBar from "../components/SideBar/SideBar";
 import { Container } from "react-bootstrap";
 import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import PopUp from "./PopUp/PopUp";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeScreen />,
+    children: [
+      {
+        path: "/login",
+        element: (
+          <PopUp>
+            <LoginScreen />
+          </PopUp>
+        ),
+      },
+    ],
+  },
+]);
 
 const Layout = ({ children }) => {
   const [sideBar, toggleSideBar] = useState(true);
@@ -27,7 +46,7 @@ const Layout = ({ children }) => {
 function App() {
   return (
     <Layout>
-      <HomeScreen />
+      <RouterProvider router={router} />
     </Layout>
   );
 }
