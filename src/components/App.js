@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import SideBar from "../components/SideBar/SideBar";
 import { Container } from "react-bootstrap";
-import HomeScreen from "./HomeScreen/HomeScreen";
+import HomeScreen from "./screens/HomeScreen/HomeScreen";
+import LoginScreen from "./screens/LoginScreen/LoginScreen";
 
-function App() {
+const Layout = ({ children }) => {
   const [sideBar, toggleSideBar] = useState(true);
   const handleToggleSideBar = () => {
     toggleSideBar((prev) => !prev);
@@ -16,10 +17,18 @@ function App() {
       <div className="home-page">
         <SideBar sideBar={sideBar} handleToggleSideBar={handleToggleSideBar} />
         <Container fluid className="app_main">
-          <HomeScreen />
+          {children}
         </Container>
       </div>
     </div>
+  );
+};
+
+function App() {
+  return (
+    <Layout>
+      <HomeScreen />
+    </Layout>
   );
 }
 
