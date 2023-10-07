@@ -13,7 +13,10 @@ function VideoCard({
 }) {
   return (
     <div className="card-container">
-      <img src={thumbnail} alt="" />
+      <div style={{ position: "relative" }}>
+        <img src={thumbnail} alt="" />
+        <span className="length">05:43</span>
+      </div>
       <div id="details">
         <Avatar className="channel-avatar" src={channelImg} />
         <div id="meta-data">

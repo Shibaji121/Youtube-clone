@@ -1,13 +1,23 @@
 .card-container {
-  width: 26rem;
   margin-bottom: 1rem;
   margin-right: 1rem;
+  cursor: pointer;
 }
 
 .card-container img {
-  width: inherit;
+  width: 100%;
   border-radius: 20px;
   margin-bottom: 8px;
+}
+
+.length {
+  position: absolute;
+  bottom: 0.9rem;
+  right: 0.8rem;
+  padding: 0.2rem;
+  background-color: #0f0f0f;
+  border-radius: 3px;
+  color: white;
 }
 
 #details {

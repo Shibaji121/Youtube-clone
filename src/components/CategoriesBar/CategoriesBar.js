@@ -30,18 +30,20 @@ const CategoriesBar = () => {
   };
 
   return (
-    <div className="cata-bar">
-      {keywords.map((value, index) => {
-        return (
-          <span
-            onClick={() => handleClick(value)}
-            key={index}
-            className={activeElement === value ? "active" : ""}
-          >
-            {value}
-          </span>
-        );
-      })}
+    <div className="cata-cont">
+      <div className="cata-bar">
+        {keywords.map((value, index) => {
+          return (
+            <span
+              onClick={() => handleClick(value)}
+              key={index}
+              className={activeElement === value ? "active" : ""}
+            >
+              {value}
+            </span>
+          );
+        })}
+      </div>
     </div>
   );
 };
