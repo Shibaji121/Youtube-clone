@@ -10,9 +10,9 @@ const HomeScreen = () => {
       <Container>
         <CategoriesBar />
         <Row>
-          {[...new Array(20)].map(() => {
+          {[...new Array(20)].map((value, index) => {
             return (
-              <Col lg={4} md={4}>
+              <Col key={index} lg={4} md={4}>
                 <RecomendVideo />
               </Col>
             );
