@@ -6,11 +6,13 @@ import HomeScreen from "./screens/HomeScreen/HomeScreen";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PopUp from "./PopUp/PopUp";
+import ErrorPage from "./ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeScreen />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/login",
