@@ -81,6 +81,21 @@
   justify-content: space-around;
   width: 15%;
 }
+.sign-in {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: blue;
+  border: 1px solid blue;
+  border-radius: 30px;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+@media (max-width: 970px) {
+  .header_right {
+    width: 25%;
+  }
+}
 @media (max-width: 500px) {
   .header_logo {
     display: none;

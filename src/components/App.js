@@ -8,24 +8,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PopUp from "./PopUp/PopUp";
 import ErrorPage from "./ErrorPage/ErrorPage";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomeScreen />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "/login",
-        element: (
-          <PopUp>
-            <LoginScreen />
-          </PopUp>
-        ),
-      },
-    ],
-  },
-]);
-
 const Layout = ({ children }) => {
   const [sideBar, toggleSideBar] = useState(true);
   const handleToggleSideBar = () => {
@@ -45,12 +27,34 @@ const Layout = ({ children }) => {
   );
 };
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <Layout>
+        <HomeScreen />
+      </Layout>
+    ),
+    errorElement: (
+      <Layout>
+        <ErrorPage />
+      </Layout>
+    ),
+    children: [
+      {
+        path: "/login",
+        element: (
+          <PopUp>
+            <LoginScreen />
+          </PopUp>
+        ),
+      },
+    ],
+  },
+]);
+
 function App() {
-  return (
-    <Layout>
-      <RouterProvider router={router} />
-    </Layout>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

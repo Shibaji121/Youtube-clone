@@ -5,6 +5,7 @@ import {
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOG_OUT,
 } from "../actionType";
 
 export const login = () => async (dispatch) => {
@@ -14,12 +15,15 @@ export const login = () => async (dispatch) => {
     });
     const provider = new firebase.auth.GoogleAuthProvider();
     const response = await auth.signInWithPopup(provider);
-    console.log(response);
+
     const accessToken = response.credential.accessToken;
     const profile = {
       name: response.additionalUserInfo.profile.name,
       photoURL: response.additionalUserInfo.profile.picture,
     };
+
+    sessionStorage.setItem("utube-access-token", JSON.stringify(accessToken));
+    sessionStorage.setItem("utube-user", JSON.stringify(profile));
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -36,4 +40,15 @@ export const login = () => async (dispatch) => {
       payload: error.message,
     });
   }
+};
+
+export const logOut = () => async (dispatch) => {
+  try {
+    await auth.signOut();
+    dispatch({
+      type: LOG_OUT,
+    });
+    sessionStorage.removeItem("utube-access-token");
+    sessionStorage.removeItem("utube-user");
+  } catch (error) {}
 };

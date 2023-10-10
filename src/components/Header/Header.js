@@ -1,4 +1,5 @@
 import {
+  AccountCircleOutlined,
   KeyboardVoiceRounded,
   Menu,
   NotificationsOutlined,
@@ -8,8 +9,17 @@ import {
 import { Avatar } from "@mui/material";
 import React from "react";
 import "../Header/Header.css";
+import { blue } from "@mui/material/colors";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Header({ handleToggleSideBar }) {
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
   return (
     <div className="header">
       <div className="header_left">
@@ -33,10 +43,14 @@ function Header({ handleToggleSideBar }) {
       <div className="header_right">
         <VideoCallOutlined />
         <NotificationsOutlined />
-        <Avatar
-          src="https://assets.turbologo.com/blog/en/2019/10/19084946/spiderman-logo-illustration-958x575.jpg"
-          alt="channel-avatar"
-        />
+        {user ? (
+          <Avatar src={user.photoURL} alt="channel-avatar" />
+        ) : (
+          <div className="sign-in" onClick={handleLogin}>
+            <AccountCircleOutlined sx={{ color: blue[800] }} />
+            <span>Sign in</span>
+          </div>
+        )}
       </div>
     </div>
   );

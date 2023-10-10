@@ -6,6 +6,7 @@ import {
   HistoryOutlined,
   HomeOutlined,
   KeyboardArrowDownOutlined,
+  LogoutOutlined,
   SmartDisplayOutlined,
   SubscriptionsOutlined,
   VerticalAlignBottomOutlined,
@@ -13,13 +14,25 @@ import {
   WatchLaterOutlined,
   WhatshotOutlined,
 } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../redux/actions/authAction";
 
 function SideBar({ sideBar, handleToggleSideBar }) {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
   const [selectedItem, setSelectedItem] = useState("Home");
 
-  const handleItemClick = useCallback((title) => {
-    setSelectedItem(title);
-  }, []);
+  const handleItemClick = useCallback(
+    (title) => {
+      if (title === "Log Out") {
+        dispatch(logOut());
+        setSelectedItem("Home");
+        return;
+      }
+      setSelectedItem(title);
+    },
+    [dispatch]
+  );
 
   return (
     <div
@@ -87,6 +100,14 @@ function SideBar({ sideBar, handleToggleSideBar }) {
         selected={selectedItem === "Show more"}
         onItemClick={handleItemClick}
       />
+      {user && (
+        <SideBarRow
+          Icon={LogoutOutlined}
+          title={"Log Out"}
+          selected={selectedItem === "Log Out"}
+          onItemClick={handleItemClick}
+        />
+      )}
     </div>
   );
 }
