@@ -26,7 +26,6 @@
 
 #details {
   display: flex;
-  justify-content: space-between;
 }
 
 #meta-data {
@@ -46,4 +45,7 @@
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   white-space: normal;
+}
+#menu {
+  margin-left: auto;
 }

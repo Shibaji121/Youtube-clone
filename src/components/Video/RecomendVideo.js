@@ -17,10 +17,13 @@ function RecomendVideo({ video }) {
       thumbnails: { medium },
     },
   } = video;
+
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
+  const [iconUrl, setIconUrl] = useState("");
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
+
   useEffect(() => {
     const getVideoDetails = async () => {
       const {
@@ -37,6 +40,23 @@ function RecomendVideo({ video }) {
     };
     getVideoDetails();
   }, [id]);
+
+  useEffect(() => {
+    const getChannelIcon = async () => {
+      const {
+        data: { items },
+      } = await request.get("/channels", {
+        params: {
+          part: "snippet",
+          id: channelId,
+        },
+      });
+      console.log(items);
+      setIconUrl(items[0]?.snippet?.thumbnails?.medium?.url);
+    };
+    getChannelIcon();
+  }, [channelId]);
+
   return (
     <div className="card-container">
       <div style={{ position: "relative" }}>
@@ -44,12 +64,7 @@ function RecomendVideo({ video }) {
         <span className="length">{_duration}</span>
       </div>
       <div id="details">
-        <Avatar
-          className="channel-avatar"
-          src={
-            "https://i.ytimg.com/vi/RsKE24ObCoQ/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYACzAWKAgwIABABGFAgWyhlMA8=&rs=AOn4CLBSx-HBCVU4KvqD8cU7u0cSwYDAJg"
-          }
-        />
+        <Avatar className="channel-avatar" src={iconUrl} />
         <div id="meta-data">
           <h3>{title}</h3>
           <div>{channelTitle}</div>
