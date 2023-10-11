@@ -10,12 +10,13 @@ function VideoCard({
   channelName,
   views,
   uploadDate,
+  duration,
 }) {
   return (
     <div className="card-container">
       <div style={{ position: "relative" }}>
         <img src={thumbnail} alt="" />
-        <span className="length">05:43</span>
+        <span className="length">{duration}</span>
       </div>
       <div id="details">
         <Avatar className="channel-avatar" src={channelImg} />
@@ -24,7 +25,7 @@ function VideoCard({
           <div>{channelName}</div>
           <div>
             <span>
-              {views} views • {uploadDate} ago
+              {views} views • {uploadDate}
             </span>
           </div>
         </div>
