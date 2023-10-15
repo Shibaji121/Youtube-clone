@@ -1,6 +1,9 @@
 .side-bar {
   min-width: 200px;
-  height: 91vh;
+  height: 90vh;
+  position: sticky;
+  left: 0;
+  top: 10vh;
 }
 
 .sidebar-row {
@@ -47,6 +50,7 @@ hr {
     transform: translateX(0);
     transition: transform 0.2s ease-in;
     height: 100vh;
+    top: 8vh;
   }
   .sidebar-row {
     padding: 0.5rem;
