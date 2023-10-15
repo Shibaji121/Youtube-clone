@@ -19,12 +19,43 @@ export const getPopularVideos = () => async (dispatch) => {
         pageToken: "",
       },
     });
-    console.log(response);
     dispatch({
       type: HOME_VIDEOS_SUCCESS,
       payload: {
         videos: response.data.items,
         nextPageToken: response.data.nextPageToken,
+        category: "All",
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: HOME_VIDEOS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const getVideosByCategory = (keyword) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: HOME_VIDEOS_REQUEST,
+    });
+    const response = await request.get("/search", {
+      params: {
+        part: "snippet",
+        maxResults: 20,
+        pageToken: getState().homeVideos.nextPageToken,
+        q: keyword,
+        type: "video",
+      },
+    });
+    dispatch({
+      type: HOME_VIDEOS_SUCCESS,
+      payload: {
+        videos: response.data.items,
+        nextPageToken: response.data.nextPageToken,
+        category: keyword,
       },
     });
   } catch (error) {

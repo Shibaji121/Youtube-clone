@@ -23,6 +23,7 @@ function RecomendVideo({ video }) {
   const [iconUrl, setIconUrl] = useState("");
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
+  const videoId = id?.videoId || id;
 
   useEffect(() => {
     const getVideoDetails = async () => {
@@ -31,15 +32,14 @@ function RecomendVideo({ video }) {
       } = await request.get("/videos", {
         params: {
           part: "contentDetails,statistics",
-          id: id,
+          id: videoId,
         },
       });
-      console.log(items);
       setDuration(items[0].contentDetails.duration);
       setViews(items[0].statistics.viewCount);
     };
     getVideoDetails();
-  }, [id]);
+  }, [videoId]);
 
   useEffect(() => {
     const getChannelIcon = async () => {
@@ -51,7 +51,6 @@ function RecomendVideo({ video }) {
           id: channelId,
         },
       });
-      console.log(items);
       setIconUrl(items[0]?.snippet?.thumbnails?.medium?.url);
     };
     getChannelIcon();

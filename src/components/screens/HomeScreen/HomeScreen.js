@@ -9,7 +9,6 @@ import { getPopularVideos } from "../../../redux/actions/videosAction";
 const HomeScreen = () => {
   const dispatch = useDispatch();
   const videos = useSelector((state) => state.homeVideos.videos);
-  console.log(videos);
 
   useEffect(() => {
     dispatch(getPopularVideos());
@@ -20,8 +19,9 @@ const HomeScreen = () => {
         <CategoriesBar />
         <Row>
           {videos.map((video) => {
+            const id = video.id?.videoId || video.id;
             return (
-              <Col key={video.id} lg={4} md={4}>
+              <Col key={id} lg={4} md={4}>
                 <RecomendVideo video={video} />
               </Col>
             );
