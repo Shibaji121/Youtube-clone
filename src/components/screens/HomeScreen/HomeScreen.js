@@ -9,8 +9,8 @@ import {
   getVideosByCategory,
 } from "../../../redux/actions/videosAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import SkeletonVideo from "../../Skeletons/SkeletonVideo";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -48,10 +48,10 @@ const HomeScreen = () => {
                     </Col>
                   );
                 })
-              : [...Array(20)].map(() => {
+              : [...Array(18)].map((val, index) => {
                   return (
-                    <Col lg={4} md={6}>
-                      <Skeleton height={100} width="90%" />
+                    <Col key={index} lg={4} md={6}>
+                      <SkeletonVideo />
                     </Col>
                   );
                 })}
