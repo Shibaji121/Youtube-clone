@@ -22,3 +22,7 @@ code {
 .video-section {
   margin-left: 2rem;
 }
+
+.lazy-load-image-background {
+  width: 100%;
+}

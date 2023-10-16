@@ -5,6 +5,7 @@ import moment from "moment/moment";
 import numeral from "numeral";
 import { Avatar } from "@mui/material";
 import { MoreVertRounded } from "@mui/icons-material";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function RecomendVideo({ video }) {
   const {
@@ -61,7 +62,7 @@ function RecomendVideo({ video }) {
   return (
     <div className="card-container">
       <div style={{ position: "relative" }}>
-        <img src={medium.url} alt="" />
+        <LazyLoadImage src={medium.url} effect="blur" />
         <span className="length">{_duration}</span>
       </div>
       <div id="details">
