@@ -9,10 +9,14 @@ import {
   getVideosByCategory,
 } from "../../../redux/actions/videosAction";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const { videos, activeCategory } = useSelector((state) => state.homeVideos);
+  const { videos, activeCategory, loading } = useSelector(
+    (state) => state.homeVideos
+  );
 
   const fetchData = () => {
     if (activeCategory === "All") dispatch(getPopularVideos());
@@ -36,13 +40,21 @@ const HomeScreen = () => {
             }
             style={{ display: "flex", flexWrap: "wrap", overflow: "hidden" }}
           >
-            {videos.map((video, index) => {
-              return (
-                <Col key={index} lg={4} md={6}>
-                  <RecomendVideo video={video} />
-                </Col>
-              );
-            })}
+            {!loading
+              ? videos.map((video, index) => {
+                  return (
+                    <Col key={index} lg={4} md={6}>
+                      <RecomendVideo video={video} />
+                    </Col>
+                  );
+                })
+              : [...Array(20)].map(() => {
+                  return (
+                    <Col lg={4} md={6}>
+                      <Skeleton height={100} width="90%" />
+                    </Col>
+                  );
+                })}
           </InfiniteScroll>
         </Row>
       </Container>

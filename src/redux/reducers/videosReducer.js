@@ -27,7 +27,7 @@ export const homeVideosReducer = (prevState = initialState, action) => {
     case HOME_VIDEOS_FAIL:
       return {
         ...prevState,
-        loading: false,
+        loading: true,
         error: action.payload,
       };
     case HOME_VIDEOS_REQUEST:
