@@ -51,7 +51,7 @@ function RecomendVideo({ video }) {
           id: channelId,
         },
       });
-      setIconUrl(items[0]?.snippet?.thumbnails?.medium?.url);
+      setIconUrl(items[0]?.snippet?.thumbnails?.default?.url);
     };
     getChannelIcon();
   }, [channelId]);

@@ -4,14 +4,20 @@ import CategoriesBar from "../../CategoriesBar/CategoriesBar";
 import RecomendVideo from "../../Video/RecomendVideo";
 import { Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getPopularVideos } from "../../../redux/actions/videosAction";
+import {
+  getPopularVideos,
+  getVideosByCategory,
+} from "../../../redux/actions/videosAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const videos = useSelector((state) => state.homeVideos.videos);
+  const { videos, activeCategory } = useSelector((state) => state.homeVideos);
 
-  const fetchData = () => {};
+  const fetchData = () => {
+    if (activeCategory === "All") dispatch(getPopularVideos());
+    else dispatch(getVideosByCategory(activeCategory));
+  };
 
   useEffect(() => {
     dispatch(getPopularVideos());
@@ -30,10 +36,9 @@ const HomeScreen = () => {
             }
             style={{ display: "flex", flexWrap: "wrap", overflow: "hidden" }}
           >
-            {videos.map((video) => {
-              const id = video.id?.videoId || video.id;
+            {videos.map((video, index) => {
               return (
-                <Col key={id} lg={4} md={6}>
+                <Col key={index} lg={4} md={6}>
                   <RecomendVideo video={video} />
                 </Col>
               );
