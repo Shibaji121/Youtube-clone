@@ -7,6 +7,7 @@ import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PopUp from "./PopUp/PopUp";
 import ErrorPage from "./ErrorPage/ErrorPage";
+import WatchScreen from "./WatchScreen/WatchScreen";
 
 const Layout = ({ children }) => {
   const [sideBar, toggleSideBar] = useState(true);
@@ -50,6 +51,14 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/watch",
+    element: (
+      <Layout>
+        <WatchScreen />
+      </Layout>
+    ),
   },
 ]);
 
