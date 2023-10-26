@@ -10,7 +10,9 @@ import ErrorPage from "./ErrorPage/ErrorPage";
 import WatchScreen from "./WatchScreen/WatchScreen";
 
 const Layout = ({ children }) => {
-  const [sideBar, toggleSideBar] = useState(true);
+  const [sideBar, toggleSideBar] = useState(
+    !(children.type.name === "WatchScreen")
+  );
   const handleToggleSideBar = () => {
     toggleSideBar((prev) => !prev);
   };
