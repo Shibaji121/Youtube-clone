@@ -16,7 +16,7 @@ const VideoMetaData = () => {
         Fully Functional YouTube Clone | React | Redux | Firebase | YouTube API
         |
       </h5>
-      <div className="metaData-details d-flex justify-content-between flex-wrap py-1">
+      <div className="metaData-details d-flex justify-content-between flex-wrap py-1 my-1 gap-8">
         <div className="metaData-left d-flex align-items-center">
           <Avatar src="https://lh3.googleusercontent.com/a/ACg8ocJdke4gPoS_zU4vDycyhzKiWumcuOcC4A65RHTIvlqNiA=s96-c" />
           <div className="channel-details mx-2 lh-sm">
@@ -36,23 +36,29 @@ const VideoMetaData = () => {
             Subscribe
           </div>
         </div>
-        <div className="metaData-right d-flex">
-          <div className="like-dislike d-flex">
-            <div>
+        <div className="metaData-right d-flex gap-8">
+          <div className="like-dislike meta-right-btns d-flex justify-content-around align-items-center border border-1 rounded-pill px-2 gap-6">
+            <div
+              className="d-flex p-1"
+              style={{ gap: "4px", borderRight: "2px Solid" }}
+            >
               <ThumbUpOutlined />
               <span>2.9K</span>
             </div>
             <ThumbDownAltOutlined />
           </div>
-          <div className="share-btn">
+          <div className="share-btn meta-right-btns d-flex align-items-center border border-1 rounded-pill px-2">
             <ReplyOutlined style={{ transform: "scaleX(-1)" }} />
             <span>share</span>
           </div>
-          <div className="download-btn">
+          <div className="download-btn meta-right-btns d-flex align-items-center border border-1 rounded-pill px-2">
             <VerticalAlignBottomOutlined />
             <span>Download</span>
           </div>
-          <MoreHorizOutlined />
+          <MoreHorizOutlined
+            fontSize="large"
+            className="three-dot meta-right-btns border border-1 rounded-circle"
+          />
         </div>
       </div>
     </div>
