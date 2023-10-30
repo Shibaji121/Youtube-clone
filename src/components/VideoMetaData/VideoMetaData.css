@@ -12,3 +12,17 @@
 .meta-right-btns:hover {
   background-color: #eae8e8;
 }
+.video-description {
+  font-size: 0.9rem;
+  text-align: justify;
+  border: 1px solid #f2f2f2;
+  background-color: #f2f2f2;
+  border-radius: 15px;
+  padding: 4px 8px;
+}
+.showMoreText {
+  text-decoration: solid;
+  font-weight: 500;
+  cursor: pointer;
+  display: block;
+}

@@ -8,6 +8,7 @@ import {
   ThumbUpOutlined,
   VerticalAlignBottomOutlined,
 } from "@mui/icons-material";
+import ReactShowMoreText from "react-show-more-text";
 
 const VideoMetaData = () => {
   return (
@@ -60,6 +61,28 @@ const VideoMetaData = () => {
             className="three-dot meta-right-btns border border-1 rounded-circle"
           />
         </div>
+      </div>
+      <div className="video-description">
+        <ReactShowMoreText
+          lines={3}
+          more="...more"
+          less="Show Less"
+          anchorClass="showMoreText"
+          expanded={false}
+        >
+          Get exclusive NordVPN deal here ➵ https://NordVPN.com/dhruv It’s risk
+          free with Nord’s 30 day money-back guarantee! ✌ This video delves
+          into the tragic incident of NASA's Columbia Space Shuttle, which
+          disintegrated upon reentering Earth's atmosphere on February 1, 2003,
+          ending the lives of all seven astronauts onboard, including India's
+          Kalpana Chawla. The crew was returning from a two-week mission, and
+          everything appeared normal until communication was suddenly lost. The
+          world watched in shock as the shuttle disintegrated, marking a dark
+          day in space history. It has been 20 years since this disaster, with
+          no similar incidents in space missions since. Join us as we pay
+          tribute to Kalpana Chawla and explore the details of this fateful
+          mission.
+        </ReactShowMoreText>
       </div>
     </div>
   );
