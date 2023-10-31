@@ -16,7 +16,7 @@ const Comments = () => {
             className="flex-grow-1"
             placeholder="Add a comment..."
           />
-          <button className="border-0 p-2">Comment</button>
+          <button className="border-0 p-2 rounded-pill">Comment</button>
         </form>
       </div>
       <div className="comments-list">

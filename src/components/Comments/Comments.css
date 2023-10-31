@@ -1,0 +1,9 @@
+.comment-form input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid;
+}
+
+.comment-form input:focus {
+  outline: none;
+}
