@@ -27,11 +27,13 @@ function Header({ handleToggleSideBar }) {
           className="header-menu-btn"
           onClick={() => handleToggleSideBar()}
         />
-        <img
-          className="header_logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/3/34/YouTube_logo_%282017%29.png"
-          alt="logo"
-        />
+        <a href="/">
+          <img
+            className="header_logo"
+            src="https://upload.wikimedia.org/wikipedia/commons/3/34/YouTube_logo_%282017%29.png"
+            alt="logo"
+          />
+        </a>
       </div>
       <div className="header_middle">
         <div className="header_input">

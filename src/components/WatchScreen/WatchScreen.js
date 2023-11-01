@@ -8,7 +8,7 @@ import Comments from "../Comments/Comments";
 
 const WatchScreen = () => {
   const [params] = useSearchParams();
-  console.log(params.get("v"));
+  const id = params.get("v");
   return (
     <Row>
       <Col lg={8}>
@@ -16,7 +16,7 @@ const WatchScreen = () => {
           <iframe
             width="100%"
             height="100%"
-            src="https://www.youtube.com/embed/JmVDH25rVPA"
+            src={`https://www.youtube.com/embed/${id}`}
             title="A AA 2 ( Chal Mohan Ranga ) Complete romantic/heart touching BGM | Nithiin, Megha Akash ||"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

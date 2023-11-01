@@ -6,6 +6,7 @@ import numeral from "numeral";
 import { Avatar } from "@mui/material";
 import { MoreVertRounded } from "@mui/icons-material";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useNavigate } from "react-router-dom";
 
 function RecomendVideo({ video }) {
   const {
@@ -25,6 +26,7 @@ function RecomendVideo({ video }) {
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
   const videoId = id?.videoId || id;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getVideoDetails = async () => {
@@ -59,8 +61,13 @@ function RecomendVideo({ video }) {
     console.log("channel api");
   }, [channelId]);
 
+  const handleVideoClick = () => {
+    navigate(`/watch?v=${id}`);
+    document.documentElement.scrollTop = 0;
+  };
+
   return (
-    <div className="card-container">
+    <div className="card-container" onClick={handleVideoClick}>
       <div style={{ position: "relative" }}>
         <LazyLoadImage src={medium.url} effect="blur" />
         <span className="length">{_duration}</span>
