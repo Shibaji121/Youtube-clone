@@ -1,0 +1,33 @@
+.video-hor-left {
+  position: relative;
+  height: 100%;
+}
+.video-hor-left img {
+  width: 180px;
+  border-radius: 10px;
+}
+.video-duration {
+  position: absolute;
+  bottom: 0.2rem;
+  right: 0.4rem;
+  padding: 0 0.1rem;
+  background-color: #0f0f0f;
+  border-radius: 3px;
+  color: white;
+}
+.video-hor-right p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
+  font-weight: 600;
+  max-height: 4.4rem;
+  overflow: hidden;
+  margin: 0;
+}
+.views {
+  font-size: 0.8rem;
+  position: relative;
+  top: -6px;
+}
