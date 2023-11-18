@@ -9,20 +9,21 @@ import {
   VerticalAlignBottomOutlined,
 } from "@mui/icons-material";
 import ReactShowMoreText from "react-show-more-text";
+import moment from "moment/moment";
+import numeral from "numeral";
 
-const VideoMetaData = () => {
+const VideoMetaData = ({ video, videoId }) => {
   return (
     <div className="video-metaData">
-      <h5>
-        Fully Functional YouTube Clone | React | Redux | Firebase | YouTube API
-        |
-      </h5>
+      <h5>{video?.snippet?.title}</h5>
       <div className="metaData-details d-flex justify-content-between flex-wrap py-1 my-1 gap-8">
         <div className="metaData-left d-flex align-items-center">
           <Avatar src="https://lh3.googleusercontent.com/a/ACg8ocJdke4gPoS_zU4vDycyhzKiWumcuOcC4A65RHTIvlqNiA=s96-c" />
           <div className="channel-details mx-2 lh-sm">
-            <div className="fw-bold">Channel Name</div>
-            <div style={{ fontSize: "0.8rem" }}>7.3k subscribers</div>
+            <div className="fw-bold">{video?.snippet?.channelTitle}</div>
+            <div style={{ fontSize: "0.8rem" }}>
+              {numeral(video?.statistics?.viewCount).format("0.a")} subscribers
+            </div>
           </div>
           <div
             className="border border-1 px-3 py-1 mx-1 rounded-pill"
@@ -44,7 +45,7 @@ const VideoMetaData = () => {
               style={{ gap: "4px", borderRight: "2px Solid" }}
             >
               <ThumbUpOutlined />
-              <span>2.9K</span>
+              <span>{numeral(video?.statistics?.likeCount).format("0.a")}</span>
             </div>
             <ThumbDownAltOutlined />
           </div>
@@ -70,18 +71,11 @@ const VideoMetaData = () => {
           anchorClass="showMoreText"
           expanded={false}
         >
-          Get exclusive NordVPN deal here ➵ https://NordVPN.com/dhruv It’s risk
-          free with Nord’s 30 day money-back guarantee! ✌ This video delves
-          into the tragic incident of NASA's Columbia Space Shuttle, which
-          disintegrated upon reentering Earth's atmosphere on February 1, 2003,
-          ending the lives of all seven astronauts onboard, including India's
-          Kalpana Chawla. The crew was returning from a two-week mission, and
-          everything appeared normal until communication was suddenly lost. The
-          world watched in shock as the shuttle disintegrated, marking a dark
-          day in space history. It has been 20 years since this disaster, with
-          no similar incidents in space missions since. Join us as we pay
-          tribute to Kalpana Chawla and explore the details of this fateful
-          mission.
+          <p style={{ fontWeight: "bold" }}>
+            {numeral(video?.statistics?.viewCount).format("0.a")} views{" "}
+            {moment(video?.snippet?.publishedAt).fromNow()}{" "}
+          </p>
+          {video?.snippet?.description}
         </ReactShowMoreText>
       </div>
     </div>

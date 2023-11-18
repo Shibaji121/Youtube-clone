@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import VideoMetaData from "../VideoMetaData/VideoMetaData";
 import "../WatchScreen/WatchScreen.css";
 import VideoHorizontal from "../VideoHorizontal/VideoHorizontal";
 import Comments from "../Comments/Comments";
+import { useDispatch, useSelector } from "react-redux";
+import { getVideoById } from "../../redux/actions/videosAction";
 
 const WatchScreen = () => {
   const [params] = useSearchParams();
   const id = params.get("v");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getVideoById(id));
+  }, [dispatch, id]);
+
+  const { video, loading } = useSelector((state) => state.selectedVideo);
   return (
     <Row>
       <Col lg={8}>
@@ -17,13 +26,18 @@ const WatchScreen = () => {
             width="100%"
             height="100%"
             src={`https://www.youtube.com/embed/${id}`}
-            title="A AA 2 ( Chal Mohan Ranga ) Complete romantic/heart touching BGM | Nithiin, Megha Akash ||"
+            title={video?.snippet?.title}
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
         </div>
-        <VideoMetaData />
+        {!loading ? (
+          <VideoMetaData video={video} videoId={id} />
+        ) : (
+          <h1>Loading...</h1>
+        )}
+
         <Comments />
       </Col>
       <Col lg={4}>
