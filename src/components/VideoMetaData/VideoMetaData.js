@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../VideoMetaData/VideoMetaData.css";
 import { Avatar } from "@mui/material";
 import {
@@ -11,18 +11,28 @@ import {
 import ReactShowMoreText from "react-show-more-text";
 import moment from "moment/moment";
 import numeral from "numeral";
+import { useDispatch, useSelector } from "react-redux";
+import { getChannelDetail } from "../../redux/actions/channelAction";
 
 const VideoMetaData = ({ video, videoId }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getChannelDetail(video?.snippet?.channelId));
+  }, [dispatch, video]);
+
+  const { channel } = useSelector((state) => state.channelDetail);
   return (
     <div className="video-metaData">
       <h5>{video?.snippet?.title}</h5>
       <div className="metaData-details d-flex justify-content-between flex-wrap py-1 my-1 gap-8">
         <div className="metaData-left d-flex align-items-center">
-          <Avatar src="https://lh3.googleusercontent.com/a/ACg8ocJdke4gPoS_zU4vDycyhzKiWumcuOcC4A65RHTIvlqNiA=s96-c" />
+          <Avatar src={channel?.snippet?.thumbnails?.medium?.url} />
           <div className="channel-details mx-2 lh-sm">
             <div className="fw-bold">{video?.snippet?.channelTitle}</div>
             <div style={{ fontSize: "0.8rem" }}>
-              {numeral(video?.statistics?.viewCount).format("0.a")} subscribers
+              {numeral(channel?.statistics?.subscriberCount).format("0.a")}{" "}
+              subscribers
             </div>
           </div>
           <div
