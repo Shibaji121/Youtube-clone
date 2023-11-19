@@ -1,3 +1,16 @@
 .comment {
   font-size: 0.9rem;
 }
+
+.reply-cnt {
+  color: #065fd4;
+  cursor: pointer;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.reply-cnt:hover {
+  border: 1px;
+  border-radius: 25px;
+  background-color: #e3f2fd;
+}

@@ -38,11 +38,11 @@ const WatchScreen = () => {
           <h1>Loading...</h1>
         )}
 
-        <Comments />
+        <Comments noOfComment={video?.statistics?.commentCount} videoId={id} />
       </Col>
       <Col lg={4}>
-        {[...Array(10)].map(() => {
-          return <VideoHorizontal />;
+        {[...Array(10)].map((val, index) => {
+          return <VideoHorizontal key={index} />;
         })}
       </Col>
     </Row>
