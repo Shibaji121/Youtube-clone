@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import "../VideoMetaData/VideoMetaData.css";
 import { Avatar } from "@mui/material";
 import {
+  KeyboardArrowDownOutlined,
   MoreHorizOutlined,
+  NotificationsNoneOutlined,
   ReplyOutlined,
   ThumbDownAltOutlined,
   ThumbUpOutlined,
@@ -12,16 +14,22 @@ import ReactShowMoreText from "react-show-more-text";
 import moment from "moment/moment";
 import numeral from "numeral";
 import { useDispatch, useSelector } from "react-redux";
-import { getChannelDetail } from "../../redux/actions/channelAction";
+import {
+  checkSubscriptionStatus,
+  getChannelDetail,
+} from "../../redux/actions/channelAction";
 
 const VideoMetaData = ({ video, videoId }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getChannelDetail(video?.snippet?.channelId));
+    dispatch(checkSubscriptionStatus(video?.snippet?.channelId));
   }, [dispatch, video]);
 
-  const { channel } = useSelector((state) => state.channelDetail);
+  const { channel, subscriptionStatus } = useSelector(
+    (state) => state.channelDetail
+  );
   return (
     <div className="video-metaData">
       <h5>{video?.snippet?.title}</h5>
@@ -41,12 +49,20 @@ const VideoMetaData = ({ video, videoId }) => {
           >
             Join
           </div>
-          <div
-            className="border border-1 px-3 py-1 mx-1 rounded-pill bg-dark text-white"
-            style={{ cursor: "pointer" }}
-          >
-            Subscribe
-          </div>
+          {subscriptionStatus ? (
+            <div className="border border-1 px-2 py-1 mx-1 rounded-pill d-flex align-items-center gap-1">
+              <NotificationsNoneOutlined />
+              Subscribed
+              <KeyboardArrowDownOutlined />
+            </div>
+          ) : (
+            <div
+              className="border border-1 px-3 py-1 mx-1 rounded-pill bg-dark text-white"
+              style={{ cursor: "pointer" }}
+            >
+              Subscribe
+            </div>
+          )}
         </div>
         <div className="metaData-right d-flex gap-8">
           <div className="like-dislike meta-right-btns d-flex justify-content-around align-items-center border border-1 rounded-pill px-2 gap-6">

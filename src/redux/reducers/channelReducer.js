@@ -2,6 +2,7 @@ import {
   CHANNEL_DETAIL_FAIL,
   CHANNEL_DETAIL_REQUEST,
   CHANNEL_DETAIL_SUCCESS,
+  SET_SUBSCRIPTION_STATUS,
 } from "../actionType";
 
 export const channelDetailsReducer = (
@@ -28,6 +29,11 @@ export const channelDetailsReducer = (
         ...prevState,
         loading: false,
         error: action.payload,
+      };
+    case SET_SUBSCRIPTION_STATUS:
+      return {
+        ...prevState,
+        subscriptionStatus: action.payload,
       };
     default:
       return prevState;
