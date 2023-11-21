@@ -6,7 +6,10 @@ import "../WatchScreen/WatchScreen.css";
 import VideoHorizontal from "../VideoHorizontal/VideoHorizontal";
 import Comments from "../Comments/Comments";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideoById } from "../../redux/actions/videosAction";
+import {
+  getPopularVideos,
+  getVideoById,
+} from "../../redux/actions/videosAction";
 
 const WatchScreen = () => {
   const [params] = useSearchParams();
@@ -15,9 +18,12 @@ const WatchScreen = () => {
 
   useEffect(() => {
     dispatch(getVideoById(id));
+    dispatch(getPopularVideos());
+    // dispatch(getRelatedVideos(id));
   }, [dispatch, id]);
 
   const { video, loading } = useSelector((state) => state.selectedVideo);
+  const { videos } = useSelector((state) => state.homeVideos);
   return (
     <Row>
       <Col lg={8}>
@@ -41,8 +47,8 @@ const WatchScreen = () => {
         <Comments noOfComment={video?.statistics?.commentCount} videoId={id} />
       </Col>
       <Col lg={4}>
-        {[...Array(10)].map((val, index) => {
-          return <VideoHorizontal key={index} />;
+        {videos.slice(-12).map((video, index) => {
+          return <VideoHorizontal key={index} video={video} />;
         })}
       </Col>
     </Row>
