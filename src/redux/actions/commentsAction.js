@@ -3,6 +3,8 @@ import {
   COMMENT_LIST_FAIL,
   COMMENT_LIST_REQUEST,
   COMMENT_LIST_SUCCESS,
+  CREATE_COMMENT_FAIL,
+  CREATE_COMMENT_SUCCESS,
 } from "../actionType";
 
 export const getCommentsOfVideoById = (id) => async (dispatch) => {
@@ -26,6 +28,44 @@ export const getCommentsOfVideoById = (id) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: COMMENT_LIST_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const addComment = (id, text) => async (dispatch, getState) => {
+  try {
+    const obj = {
+      snippet: {
+        videoId: id,
+        topLevelComment: {
+          snippet: {
+            textOriginal: text,
+          },
+        },
+      },
+    };
+
+    const response = await request.post("/commentThreads", obj, {
+      params: {
+        part: "snippet",
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+
+    dispatch({
+      type: CREATE_COMMENT_SUCCESS,
+      payload: response?.data?.items,
+    });
+    setTimeout(() => {
+      dispatch(getCommentsOfVideoById(id));
+    }, 4000);
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: CREATE_COMMENT_FAIL,
       payload: error.message,
     });
   }

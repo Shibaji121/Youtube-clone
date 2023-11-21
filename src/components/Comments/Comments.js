@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../Comments/Comments.css";
 import { Avatar } from "@mui/material";
 import Comment from "../Comment/Comment";
 import { useDispatch, useSelector } from "react-redux";
-import { getCommentsOfVideoById } from "../../redux/actions/commentsAction";
+import {
+  addComment,
+  getCommentsOfVideoById,
+} from "../../redux/actions/commentsAction";
 
 const Comments = ({ noOfComment, videoId }) => {
+  const [inputText, setInputText] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -13,7 +17,14 @@ const Comments = ({ noOfComment, videoId }) => {
   }, [dispatch, videoId]);
 
   const { comments, loading } = useSelector((state) => state.commentList);
-  const handleComment = () => {};
+  const handleComment = (e) => {
+    e.preventDefault();
+    if (inputText.length === 0) {
+      return;
+    }
+    dispatch(addComment(videoId, inputText));
+    setInputText("");
+  };
   return (
     <>
       {!loading ? (
@@ -26,6 +37,8 @@ const Comments = ({ noOfComment, videoId }) => {
                 type="text"
                 className="flex-grow-1"
                 placeholder="Add a comment..."
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
               />
               <button className="border-0 p-2 rounded-pill">Comment</button>
             </form>
