@@ -26,3 +26,13 @@ code {
 .lazy-load-image-background {
   width: 100%;
 }
+
+.line-clamp {
+  overflow: hidden;
+  max-height: 4.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
+}

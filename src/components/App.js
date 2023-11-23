@@ -8,6 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PopUp from "./PopUp/PopUp";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import WatchScreen from "./WatchScreen/WatchScreen";
+import SearchScreen from "./screens/SearchScreen/SearchScreen";
 
 const Layout = ({ children }) => {
   const [sideBar, toggleSideBar] = useState(
@@ -59,6 +60,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <WatchScreen />
+      </Layout>
+    ),
+  },
+  {
+    path: "/results",
+    element: (
+      <Layout>
+        <SearchScreen />
       </Layout>
     ),
   },

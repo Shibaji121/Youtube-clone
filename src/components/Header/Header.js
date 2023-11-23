@@ -7,18 +7,24 @@ import {
   VideoCallOutlined,
 } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import "../Header/Header.css";
 import { blue } from "@mui/material/colors";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Header({ handleToggleSideBar }) {
+  const [searchInput, setSearchInput] = useState("");
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
   const handleLogin = () => {
     navigate("/login");
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/results?search_query=${searchInput}`);
+    console.log("clicked");
   };
   return (
     <div className="header">
@@ -36,10 +42,17 @@ function Header({ handleToggleSideBar }) {
         </a>
       </div>
       <div className="header_middle">
-        <div className="header_input">
-          <input type="text" placeholder="Search" />
-          <Search className="search-icon" />
-        </div>
+        <form className="header_input" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+          <button className="search-icon">
+            <Search />
+          </button>
+        </form>
         <KeyboardVoiceRounded className="voice-icon" />
       </div>
       <div className="header_right">

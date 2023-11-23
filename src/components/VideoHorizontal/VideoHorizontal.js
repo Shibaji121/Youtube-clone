@@ -6,11 +6,13 @@ import numeral from "numeral";
 import request from "../../api";
 import { MoreVertRounded } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import { Avatar } from "@mui/material";
 
-const VideoHorizontal = ({ video }) => {
+const VideoHorizontal = ({ video, searchScreen }) => {
   const {
     id,
     snippet: {
+      channelId,
       channelTitle,
       title,
       publishedAt,
@@ -20,10 +22,16 @@ const VideoHorizontal = ({ video }) => {
 
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
+  const [iconUrl, setIconUrl] = useState("");
+  const [subscriberCount, setSubscriberCount] = useState();
+  const [channelUrl, setChannelUrl] = useState("");
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
   const videoId = id?.videoId || id;
   const navigate = useNavigate();
+  const isVideo = id.kind === "youtube#video" || !searchScreen;
+  const isPlaylist = id.kind === "youtube#playlist";
+  const isChannel = id.kind === "youtube#channel";
 
   useEffect(() => {
     const getVideoDetails = async () => {
@@ -38,17 +46,38 @@ const VideoHorizontal = ({ video }) => {
       setDuration(items[0].contentDetails.duration);
       setViews(items[0].statistics.viewCount);
     };
-    getVideoDetails();
-  }, [videoId]);
+    if (isVideo) getVideoDetails();
+  }, [videoId, isVideo]);
+
+  useEffect(() => {
+    const getChannelDetails = async () => {
+      const {
+        data: { items },
+      } = await request.get("/channels", {
+        params: {
+          part: "snippet,contentDetails,statistics",
+          id: channelId,
+        },
+      });
+      setIconUrl(items[0]?.snippet?.thumbnails?.default?.url);
+      setSubscriberCount(items[0]?.statistics?.subscriberCount);
+      setChannelUrl(items[0]?.snippet?.customUrl);
+    };
+    if (!isPlaylist) getChannelDetails();
+  }, [channelId, isPlaylist]);
 
   const handleVideoClick = () => {
-    navigate(`/watch?v=${id}`);
-    document.documentElement.scrollTop = 0;
+    if (isVideo) {
+      navigate(`/watch?v=${videoId}`);
+      document.documentElement.scrollTop = 0;
+    }
   };
 
   return (
     <div
-      className="videoHorizontal m-1 py-2 d-flex gap-1"
+      className={`videoHorizontal py-2 d-flex gap-1 ${
+        searchScreen ? "mx-5" : "m-1"
+      }`}
       onClick={handleVideoClick}
     >
       <div className="video-hor-left">
@@ -56,22 +85,50 @@ const VideoHorizontal = ({ video }) => {
           src={medium.url}
           alt=""
           effect="blur"
-          className="video-thumb"
+          className={`video-thumb ${isChannel && "mx-5"}`}
+          style={{
+            width: searchScreen ? (isChannel ? "200px" : "300px") : "180px",
+            borderRadius: isChannel && "50%",
+          }}
           wrapperClassName="video-thumb-wrapper"
         />
-        <span className="video-duration">{_duration}</span>
+        {isVideo && <span className="video-duration">{_duration}</span>}
       </div>
       <div className="video-hor-right p-0">
-        <p>{title}</p>
-        <div style={{ fontSize: "0.9rem" }}>{channelTitle}</div>
-        <div>
-          <span className="views">
-            {numeral(views).format("0.a")} views •{" "}
-            {moment(publishedAt).fromNow()}
-          </span>
+        <p className={`${searchScreen && "fs-5"}`}>{title}</p>
+        <div className="d-flex gap-2 align-items-center my-1">
+          {searchScreen && isVideo && (
+            <Avatar
+              className="channel-avatar"
+              style={{ width: "30px", height: "30px" }}
+              src={iconUrl}
+            />
+          )}
+          {isVideo && <div style={{ fontSize: "0.9rem" }}>{channelTitle}</div>}
         </div>
+        <div>
+          {isVideo && (
+            <span className="views">
+              {numeral(views).format("0.a")} views •{" "}
+              {moment(publishedAt).fromNow()}
+            </span>
+          )}
+          {isChannel && (
+            <span className="views">
+              {channelUrl} • {numeral(subscriberCount).format("0.a")}{" "}
+              subscribers
+            </span>
+          )}
+          {isPlaylist && (
+            <span className="views">{channelTitle} • Playlist</span>
+          )}
+        </div>
+        {searchScreen && (
+          <div className="line-clamp"> {video?.snippet?.description}</div>
+        )}
+        {isPlaylist && <div className="fw-bold">VIEW FULL PLAYLIST</div>}
       </div>
-      <MoreVertRounded />
+      <MoreVertRounded style={{ marginLeft: "auto" }} />
     </div>
   );
 };
