@@ -16,6 +16,7 @@ import {
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/actions/authAction";
+import { Link } from "react-router-dom";
 
 function SideBar({ sideBar, handleToggleSideBar }) {
   const dispatch = useDispatch();
@@ -39,24 +40,28 @@ function SideBar({ sideBar, handleToggleSideBar }) {
       className={sideBar ? "side-bar" : "side-bar no-sideBar"}
       onClick={() => handleToggleSideBar(false)}
     >
-      <SideBarRow
-        Icon={HomeOutlined}
-        title={"Home"}
-        selected={selectedItem === "Home"}
-        onItemClick={handleItemClick}
-      />
+      <Link to={"/"}>
+        <SideBarRow
+          Icon={HomeOutlined}
+          title={"Home"}
+          selected={selectedItem === "Home"}
+          onItemClick={handleItemClick}
+        />
+      </Link>
       <SideBarRow
         Icon={WhatshotOutlined}
         title={"Trending"}
         selected={selectedItem === "Trending"}
         onItemClick={handleItemClick}
       />
-      <SideBarRow
-        Icon={SubscriptionsOutlined}
-        title={"Subscriptions"}
-        selected={selectedItem === "Subscriptions"}
-        onItemClick={handleItemClick}
-      />
+      <Link to={"feed/subscriptions"}>
+        <SideBarRow
+          Icon={SubscriptionsOutlined}
+          title={"Subscriptions"}
+          selected={selectedItem === "Subscriptions"}
+          onItemClick={handleItemClick}
+        />
+      </Link>
       <hr />
       <SideBarRow
         Icon={VideoLibraryOutlined}

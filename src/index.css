@@ -36,3 +36,8 @@ code {
   text-overflow: ellipsis;
   white-space: normal;
 }
+
+a {
+  text-decoration: none !important;
+  color: currentColor !important;
+}

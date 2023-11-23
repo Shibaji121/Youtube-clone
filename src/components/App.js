@@ -9,6 +9,7 @@ import PopUp from "./PopUp/PopUp";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import WatchScreen from "./WatchScreen/WatchScreen";
 import SearchScreen from "./screens/SearchScreen/SearchScreen";
+import Subscriptions from "./screens/Subscriptions/Subscriptions";
 
 const Layout = ({ children }) => {
   const [sideBar, toggleSideBar] = useState(
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/login",
+        path: "login",
         element: (
           <PopUp>
             <LoginScreen />
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/watch",
+    path: "watch",
     element: (
       <Layout>
         <WatchScreen />
@@ -64,10 +65,18 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/results",
+    path: "results",
     element: (
       <Layout>
         <SearchScreen />
+      </Layout>
+    ),
+  },
+  {
+    path: "feed/subscriptions",
+    element: (
+      <Layout>
+        <Subscriptions />
       </Layout>
     ),
   },

@@ -8,10 +8,11 @@ import { MoreVertRounded } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "@mui/material";
 
-const VideoHorizontal = ({ video, searchScreen }) => {
+const VideoHorizontal = ({ video, searchScreen, subscriptionScreen }) => {
   const {
     id,
     snippet: {
+      resourceId,
       channelId,
       channelTitle,
       title,
@@ -28,10 +29,12 @@ const VideoHorizontal = ({ video, searchScreen }) => {
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
   const videoId = id?.videoId || id;
+  const channelIdValue = resourceId?.channelId || channelId;
   const navigate = useNavigate();
-  const isVideo = id.kind === "youtube#video" || !searchScreen;
+  const isVideo =
+    id.kind === "youtube#video" || (!searchScreen && !subscriptionScreen);
   const isPlaylist = id.kind === "youtube#playlist";
-  const isChannel = id.kind === "youtube#channel";
+  const isChannel = id.kind === "youtube#channel" || subscriptionScreen;
 
   useEffect(() => {
     const getVideoDetails = async () => {
@@ -43,8 +46,8 @@ const VideoHorizontal = ({ video, searchScreen }) => {
           id: videoId,
         },
       });
-      setDuration(items[0].contentDetails.duration);
-      setViews(items[0].statistics.viewCount);
+      setDuration(items[0]?.contentDetails?.duration);
+      setViews(items[0]?.statistics?.viewCount);
     };
     if (isVideo) getVideoDetails();
   }, [videoId, isVideo]);
@@ -56,7 +59,7 @@ const VideoHorizontal = ({ video, searchScreen }) => {
       } = await request.get("/channels", {
         params: {
           part: "snippet,contentDetails,statistics",
-          id: channelId,
+          id: channelIdValue,
         },
       });
       setIconUrl(items[0]?.snippet?.thumbnails?.default?.url);
@@ -64,7 +67,7 @@ const VideoHorizontal = ({ video, searchScreen }) => {
       setChannelUrl(items[0]?.snippet?.customUrl);
     };
     if (!isPlaylist) getChannelDetails();
-  }, [channelId, isPlaylist]);
+  }, [channelIdValue, isPlaylist]);
 
   const handleVideoClick = () => {
     if (isVideo) {
@@ -77,7 +80,7 @@ const VideoHorizontal = ({ video, searchScreen }) => {
     <div
       className={`videoHorizontal py-2 d-flex gap-1 ${
         searchScreen ? "mx-5" : "m-1"
-      }`}
+      } ${subscriptionScreen && "mx-auto"} `}
       onClick={handleVideoClick}
     >
       <div className="video-hor-left">
@@ -123,7 +126,7 @@ const VideoHorizontal = ({ video, searchScreen }) => {
             <span className="views">{channelTitle} • Playlist</span>
           )}
         </div>
-        {searchScreen && (
+        {(subscriptionScreen || searchScreen) && (
           <div className="line-clamp"> {video?.snippet?.description}</div>
         )}
         {isPlaylist && <div className="fw-bold">VIEW FULL PLAYLIST</div>}
