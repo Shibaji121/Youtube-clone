@@ -24,7 +24,6 @@ function Header({ handleToggleSideBar }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/results?search_query=${searchInput}`);
-    console.log("clicked");
   };
   return (
     <div className="header">

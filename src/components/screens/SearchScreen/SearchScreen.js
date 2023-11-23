@@ -21,7 +21,11 @@ const SearchScreen = () => {
       {!loading ? (
         videos?.map((video) => (
           <VideoHorizontal
-            key={video?.id?.videoId}
+            key={
+              video?.id?.videoId ||
+              video?.id?.channelId ||
+              video?.id?.playlistId
+            }
             video={video}
             searchScreen
           />
