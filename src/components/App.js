@@ -53,6 +53,11 @@ const router = createBrowserRouter([
             <LoginScreen />
           </PopUp>
         ),
+        errorElement: (
+          <Layout>
+            <ErrorPage />
+          </Layout>
+        ),
       },
     ],
   },
@@ -63,6 +68,11 @@ const router = createBrowserRouter([
         <WatchScreen />
       </Layout>
     ),
+    errorElement: (
+      <Layout>
+        <ErrorPage />
+      </Layout>
+    ),
   },
   {
     path: "results",
@@ -71,12 +81,22 @@ const router = createBrowserRouter([
         <SearchScreen />
       </Layout>
     ),
+    errorElement: (
+      <Layout>
+        <ErrorPage />
+      </Layout>
+    ),
   },
   {
-    path: "feed/subscriptions",
+    path: "/feed/subscriptions",
     element: (
       <Layout>
         <Subscriptions />
+      </Layout>
+    ),
+    errorElement: (
+      <Layout>
+        <ErrorPage />
       </Layout>
     ),
   },

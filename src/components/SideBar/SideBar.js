@@ -54,7 +54,7 @@ function SideBar({ sideBar, handleToggleSideBar }) {
         selected={selectedItem === "Trending"}
         onItemClick={handleItemClick}
       />
-      <Link to={"feed/subscriptions"}>
+      <Link to={"/feed/subscriptions"}>
         <SideBarRow
           Icon={SubscriptionsOutlined}
           title={"Subscriptions"}
