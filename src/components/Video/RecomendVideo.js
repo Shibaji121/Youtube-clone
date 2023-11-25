@@ -62,7 +62,7 @@ function RecomendVideo({ video }) {
   }, [channelId]);
 
   const handleVideoClick = () => {
-    navigate(`/watch?v=${id}`);
+    navigate(`/watch?v=${videoId}`);
     document.documentElement.scrollTop = 0;
   };
 
