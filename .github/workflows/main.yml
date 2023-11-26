@@ -5,9 +5,6 @@ on:
     branches:
       - master
 
-env:
-  REACT_APP_apiKey: ${{secrets.REACT_APP_API_KEY}}
-
 jobs:
   deploy:
     name: Build & Deployment
@@ -16,6 +13,12 @@ jobs:
     steps:
       - name: get the source code
         uses: actions/checkout@v2
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_REACT_APP_apiKey: ${{secrets.REACT_APP_API_KEY}}
+          directory: "./"
+          file_name: ".env.local"
 
       - name: install node
         uses: actions/setup-node@v2
