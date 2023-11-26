@@ -16,9 +16,9 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v2.0
         with:
-          envkey_REACT_APP_apiKey: ${{secrets.REACT_APP_API_KEY}}
+          envkey_REACT_APP_API_KEY: ${{secrets.REACT_APP_API_KEY}}
           directory: "./"
-          file_name: ".env.local"
+          file_name: ".env"
 
       - name: install node
         uses: actions/setup-node@v2
