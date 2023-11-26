@@ -42,7 +42,6 @@ function RecomendVideo({ video }) {
       setViews(items[0].statistics.viewCount);
     };
     getVideoDetails();
-    // console.log("video api");
   }, [videoId]);
 
   useEffect(() => {
@@ -58,7 +57,6 @@ function RecomendVideo({ video }) {
       setIconUrl(items[0]?.snippet?.thumbnails?.default?.url);
     };
     getChannelIcon();
-    console.log("channel api");
   }, [channelId]);
 
   const handleVideoClick = () => {

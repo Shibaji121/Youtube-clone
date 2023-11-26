@@ -80,7 +80,7 @@ const VideoHorizontal = ({ video, searchScreen, subscriptionScreen }) => {
     <div
       className={`videoHorizontal py-2 d-flex gap-1 ${
         searchScreen ? "mx-5" : "m-1"
-      } ${subscriptionScreen && "mx-auto"} `}
+      } ${subscriptionScreen ? "mx-auto" : ""} `}
       onClick={handleVideoClick}
     >
       <div className="video-hor-left">
