@@ -8,6 +8,7 @@ import store from "./redux/store";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+console.log(process.env.REACT_APP_apiKey);
 root.render(
   <Provider store={store}>
     <App />
