@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env:
+  REACT_APP_apiKey: ${{secrets.REACT_APP_API_KEY}}
+
 jobs:
   deploy:
     name: Build & Deployment
