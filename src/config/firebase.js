@@ -2,7 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
+  apiKey: "AIzaSyCPWRsTv0XEXh4hbME8mqo-MSOPFAoaKP4",
   authDomain: "utube-clone121.firebaseapp.com",
   projectId: "utube-clone121",
   storageBucket: "utube-clone121.appspot.com",
